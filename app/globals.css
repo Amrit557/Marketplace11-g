@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --background: 74 22% 96%; --foreground: 150 15% 7%; --border: 150 15% 85%; --radius: 6px; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { @apply bg-[#f5f7f4] text-[#101513]; margin: 0; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+@layer components {
+  .eyebrow { @apply flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[.15em] text-[#68746c]; }
+  .pulse-dot { @apply inline-block h-2 w-2 rounded-full bg-[#b4e900] shadow-[0_0_0_3px_rgba(180,233,0,.22)]; }
+  .primary-btn { @apply inline-flex items-center gap-2 rounded bg-[#101513] px-4 py-3 text-xs font-bold text-white transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#b4e900]; }
+  .secondary-btn { @apply inline-flex items-center gap-2 rounded border border-[#101513]/25 bg-transparent px-4 py-3 text-xs font-bold transition hover:bg-white; }
+  .nav-active { @apply underline decoration-[#b4e900] decoration-2 underline-offset-8; }
+  .product-grid { @apply grid gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-4; }
+  .product-card { @apply min-w-0; }
+  .product-art { @apply relative h-64 cursor-pointer overflow-hidden rounded border-2 border-[#101513] transition duration-300 hover:-translate-y-1 hover:shadow-[5px_5px_0_#101513]; }
+  .product-art.sunset { background: linear-gradient(135deg,#ff916d 0%,#e83e5c 52%,#5b234d 100%); }
+  .product-art.citrus { background: linear-gradient(135deg,#e6fc61,#a9e500 45%,#278d75); }
+  .product-art.violet { background: linear-gradient(135deg,#deb4ff,#6344b8 55%,#211c58); }
+  .product-art.aqua { background: linear-gradient(135deg,#aaf9e9,#23bbc2 45%,#15516a); }
+  .product-art.coral { background: linear-gradient(135deg,#ffcc8d,#f27663 46%,#ab405e); }
+  .product-art.forest { background: linear-gradient(135deg,#d7e5bd,#638e4d 45%,#173d38); }
+  .art-tag { @apply absolute left-3 top-3 rounded bg-white/90 px-2 py-1 font-mono text-[9px] font-black tracking-wider; }
+  .art-number { @apply absolute right-3 top-3 font-mono text-xs font-black text-white/75; }
+  .art-label { @apply absolute bottom-3 left-3 font-mono text-[10px] uppercase tracking-wider text-white/80; }
+  .art-label b { @apply text-sm tracking-tight text-white; }
+  .art-shape { @apply absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rotate-12 rounded-[35%] border-[18px] border-white/80 mix-blend-overlay; }
+  .heart { @apply rounded p-1.5 text-[#8a9690] transition hover:bg-[#e8eee5] hover:text-[#101513]; }
+  .heart.saved { @apply text-[#708000]; }
+  .demand-strip { background-color: #d9eecc; }
+  .demand-row { @apply flex w-full items-center gap-3 rounded border border-[#101513]/10 bg-white p-3 text-left transition hover:-translate-x-1 hover:border-[#101513]/40; }
+  .mini-art { @apply h-11 w-11 shrink-0 rounded border border-[#101513] p-1.5; }
+  .mini-art span { @apply grid h-full place-items-center font-mono text-[9px] font-black; }
+  .mini-art.citrus { background: #c8ff00; } .mini-art.coral { background: #ff9a79; } .mini-art.aqua { background: #79e6df; }
+  .section-heading { @apply flex items-end justify-between gap-4; }
+  .section-heading h2 { @apply font-mono text-3xl font-black tracking-[-.06em]; }
+  .filter-pill { @apply flex shrink-0 items-center gap-1.5 rounded-full border border-[#101513]/20 px-3 py-2 text-xs font-semibold text-[#68746c] transition hover:border-[#101513]/60; }
+  .filter-pill.active { @apply border-[#101513] bg-[#101513] text-white; }
+  .stat-card { @apply rounded border border-[#101513]/20 bg-white p-4; }
+  .stat-card b { @apply block font-mono text-2xl font-black tracking-tight; }
+  .stat-card span { @apply mt-2 block font-mono text-[10px] uppercase tracking-wider text-[#718078]; }
+  .modal-backdrop { @apply fixed inset-0 z-50 grid place-items-center bg-[#101513]/60 p-4 backdrop-blur-sm; }
+  .modal-card { @apply max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg border-2 border-[#101513] bg-[#f5f7f4] p-5 shadow-[7px_7px_0_#b4e900] sm:p-7; }
+  .role-option { @apply flex w-full items-center gap-3 rounded border border-[#101513]/20 bg-white p-3 transition hover:border-[#101513]; }
+  .role-option.selected { @apply border-2 border-[#101513] bg-[#d9eecc]; }
+  .role-option b { @apply block font-mono text-sm; }
+  .role-option small { @apply mt-1 block text-left text-xs text-[#68746c]; }
+  .form-field { @apply w-full rounded border border-[#101513]/20 bg-white px-3 py-2.5 text-sm outline-none transition placeholder:text-[#a0aaa3] focus:border-[#101513] focus:ring-2 focus:ring-[#c8ff00]; }
+  .toast { @apply fixed right-5 top-20 z-[60] flex items-center gap-2 rounded bg-[#101513] px-4 py-3 text-xs font-bold text-white shadow-lg; }
+  .hero-art { background-image: radial-gradient(circle at 80% 20%,rgba(255,255,255,.7) 0 1px,transparent 1px), radial-gradient(circle at 20% 80%,rgba(16,21,19,.12) 0 1px,transparent 1px); background-size: 28px 28px, 22px 22px; }
+  .hero-lines { @apply absolute inset-0 opacity-30; background: repeating-linear-gradient(124deg, transparent 0 18px, #557244 19px 20px); }
+  .hero-orb { @apply absolute right-[18%] top-[27%] h-40 w-40 rounded-full border-[18px] border-[#101513] bg-[#c8ff00] mix-blend-multiply; }
+}
+
+@media (max-width: 640px) { .product-art { height: 220px; } }
